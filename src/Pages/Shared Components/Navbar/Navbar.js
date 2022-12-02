@@ -96,7 +96,10 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res)
+        localStorage.clear();
+      })
       .catch((err) => console.error(err));
   };
   return (
