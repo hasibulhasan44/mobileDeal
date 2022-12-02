@@ -41,6 +41,8 @@ const ListAnItem = () => {
     const monthsused = data.monthsused;
     const originalprice = data.originalprice;
     const resaleprice = data.resaleprice;
+    const status = "Available"
+    const advertise = false;
     const dateraw = new Date();
     const postdate = format(dateraw, "Pp");
 
@@ -67,6 +69,8 @@ const ListAnItem = () => {
           originalprice,
           resaleprice,
           postdate,
+          status,
+          advertise,
           selleremail,
           sellername,
           sellerimg,
@@ -85,6 +89,8 @@ const ListAnItem = () => {
     originalprice,
     resaleprice,
     postdate,
+    status,
+    advertise,
     selleremail,
     sellername,
     sellerimg,
@@ -100,6 +106,8 @@ const ListAnItem = () => {
       originalprice,
       resaleprice,
       postdate,
+      status,
+      advertise,
       selleremail,
       sellername,
       sellerimg,

@@ -42,6 +42,7 @@ const EditItem = () => {
     const monthsused = data.monthsused;
     const originalprice = data.originalprice;
     const resaleprice = data.resaleprice;
+    const status = "Available"
 
     const image = data.image[0];
     const formData = new FormData();
@@ -70,6 +71,7 @@ const EditItem = () => {
             sellername,
             sellerimg,
             sellerverified,
+            status
           };
 
           fetch(`http://localhost:5000/updateitem?id=${product?._id}`, {

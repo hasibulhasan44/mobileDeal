@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-import img1 from "../../images/doodle2.png";
+import img1 from '../../images/doodle2.png';
 import { BsFillMegaphoneFill } from "react-icons/bs";
 import { BiHappyAlt } from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
