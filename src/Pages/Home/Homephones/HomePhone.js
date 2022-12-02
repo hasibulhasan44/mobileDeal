@@ -9,10 +9,9 @@ const HomePhone = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/advertisedphones`)
-      .then((res) => res.json()) 
+    fetch(`https://mobile-deal-server.vercel.app/advertisedphones`)
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setphones(data);
       });
     setLoading(false);
@@ -24,17 +23,17 @@ const HomePhone = () => {
 
   return (
     <div>
-        <p className="text-xl font-semibold text-center">Here Are Some Most Viewed Products On Our Website</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
-    {
-        phones?.map(phone => <SinglePhone
-        key={phone?._id}
-        phone={phone}
-        ></SinglePhone>)
-    }
-  </div>;
+      <p className="text-xl font-semibold text-center">
+        Here Are Some Most Viewed Products On Our Website
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
+        {phones?.map((phone) => (
+          <SinglePhone key={phone?._id} phone={phone}></SinglePhone>
+        ))}
+      </div>
+      ;
     </div>
-  )
+  );
 };
 
 export default HomePhone;

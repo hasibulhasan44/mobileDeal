@@ -8,7 +8,6 @@ import Loading from "../../Shared Components/LoadingBtn/Loading";
 
 const EditItem = () => {
   const product = useLoaderData();
-  console.log(product);
   const { user } = useContext(AuthContext);
   const [loadedUserData, setLoadedUserData] = useState();
   const navigate = useNavigate();
@@ -22,9 +21,8 @@ const EditItem = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user?email=${user?.email}`)
+      .get(`https://mobile-deal-server.vercel.app/user?email=${user?.email}`)
       .then(function (response) {
-        console.log(response.data);
         setLoadedUserData(response?.data);
       });
   }, [user]);
@@ -42,7 +40,7 @@ const EditItem = () => {
     const monthsused = data.monthsused;
     const originalprice = data.originalprice;
     const resaleprice = data.resaleprice;
-    const status = "Available"
+    const status = "Available";
 
     const image = data.image[0];
     const formData = new FormData();
@@ -71,38 +69,43 @@ const EditItem = () => {
             sellername,
             sellerimg,
             sellerverified,
-            status
+            status,
           };
 
-          fetch(`http://localhost:5000/updateitem?id=${product?._id}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(updatedCar),
-          })
+          fetch(
+            `https://mobile-deal-server.vercel.app/updateitem?id=${product?._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(updatedCar),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               if (data.acknowledged) {
                 toast.success("Your phone information has been updated");
                 navigate("/dashboard/mylistings");
               }
-                setLoading(false);
-                reset();
+              setLoading(false);
+              reset();
             });
         }
       });
   };
 
-  if(loading){
-    return <Loading></Loading>
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (
     <div className="flex justify-center items-center">
       <div className="lg:w-96 md:w-96 p-7">
-        <h2 className="text-xl text-center">You Are Now Editing {product?.brandname}-{product?.modelname}'s Information</h2>
+        <h2 className="text-xl text-center">
+          You Are Now Editing {product?.brandname}-{product?.modelname}'s
+          Information
+        </h2>
         <form onSubmit={handleSubmit(handleEditProduct)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">

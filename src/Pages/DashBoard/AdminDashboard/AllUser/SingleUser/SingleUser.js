@@ -8,11 +8,11 @@ const SingleUser = ({ user, btnName, setRefetch }) => {
       `Are you sure you want to delete this ${btnName}?`
     );
     if (proceed) {
-      fetch(`http://localhost:5000/deleteuser?id=${id}`, {
+      fetch(`https://mobile-deal-server.vercel.app/deleteuser?id=${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
-        //   authorization: `bearer ${localStorage.getItem("wheelanesToken")}`,
+          //   authorization: `bearer ${localStorage.getItem("wheelanesToken")}`,
         },
       })
         .then((res) => res.json())
@@ -34,11 +34,11 @@ const SingleUser = ({ user, btnName, setRefetch }) => {
   const handleMakeAdmin = (id) => {
     const proceed = window.confirm(`Are you sure to make ${btnName} an admin?`);
     if (proceed) {
-      fetch(`http://localhost:5000/makeadmin?id=${id}`, {
+      fetch(`https://mobile-deal-server.vercel.app/makeadmin?id=${id}`, {
         method: "put",
         headers: {
           "content-type": "application/json",
-        //   authorization: `bearer ${localStorage.getItem("wheelanesToken")}`,
+          //   authorization: `bearer ${localStorage.getItem("wheelanesToken")}`,
         },
       })
         .then((res) => res.json())
@@ -58,13 +58,12 @@ const SingleUser = ({ user, btnName, setRefetch }) => {
   };
 
   const handleVerify = (id) => {
-    const proceed = window.confirm(`Are you sure verify the seller?`);
+    const proceed = window.confirm(`Are you sure to verify the seller?`);
     if (proceed) {
-      fetch(`http://localhost:5000/verify?id=${id}`, {
+      fetch(`https://mobile-deal-server.vercel.app/verify?id=${id}`, {
         method: "put",
         headers: {
           "content-type": "application/json",
-        //   authorization: `bearer ${localStorage.getItem("wheelanesToken")}`,
         },
       })
         .then((res) => res.json())

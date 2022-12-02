@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
-import img1 from '../../images/doodle2.png';
+import img1 from "../../images/doodle2.png";
 import { BsFillMegaphoneFill } from "react-icons/bs";
 import { BiHappyAlt } from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import Category from "../Category/Category";
-import {MdMiscellaneousServices} from 'react-icons/md'
+import { MdMiscellaneousServices } from "react-icons/md";
 import HomePhone from "./Homephones/HomePhone";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [categories, setcategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/categorieshome")
-    .then(res => res.json())
-    .then(data => {     
-       setcategories(data)})
-  },[])
+    fetch("https://mobile-deal-server.vercel.app/categorieshome")
+      .then((res) => res.json())
+      .then((data) => {
+        setcategories(data);
+      });
+  }, []);
   return (
     <div>
       <div
@@ -32,7 +34,7 @@ const Home = () => {
               and Infinix brand. You can buy them in an affordable price without
               any kind of hesitation.
             </p>
-            <button className="btn btn-primary">Explore Mobile Phones</button>
+            <Link to="/allphones" className="btn btn-primary">Explore Mobile Phones</Link>
           </div>
         </div>
       </div>
@@ -42,12 +44,9 @@ const Home = () => {
           Product categories By Brand Name
         </h1>
         <div className="lg:grid lg:grid-cols-3">
-          {
-            categories?.map((category, idx) => <Category 
-            key = {idx}
-            category = {category}
-            ></Category>)
-          }
+          {categories?.map((category, idx) => (
+            <Category key={idx} category={category}></Category>
+          ))}
         </div>
       </div>
 
@@ -55,16 +54,11 @@ const Home = () => {
 
       <div className="w-full">
         <div className="flex flex-col-reverse items-center w-1/4 mx-auto p-12">
-          <h1 className="text-xl text-center p-2">
-            Our Services and Works
-          </h1>
+          <h1 className="text-xl text-center p-2">Our Services and Works</h1>
           <MdMiscellaneousServices className="mt-4 h-16 w-16"></MdMiscellaneousServices>
         </div>
         <div className="lg:grid lg:grid-cols-3 mt-2 p-4 gap-4">
-          <div
-           
-            className="border-4 border-red-200 p-4 rounded-lg mb-4"
-          >
+          <div className="border-4 border-red-200 p-4 rounded-lg mb-4">
             <div className="flex flex-col-reverse items-center justify-center">
               <h1 className="text-lg text-center mb-2">Advirtisement</h1>
               <BsFillMegaphoneFill className="h-12 w-12 ml-4" />
@@ -75,10 +69,7 @@ const Home = () => {
               thorough us to resale.
             </p>
           </div>
-          <div
-           
-            className="border-4 border-red-200 p-4 rounded-lg mb-4"
-          >
+          <div className="border-4 border-red-200 p-4 rounded-lg mb-4">
             <div className="flex flex-col-reverse items-center justify-center">
               <h1 className="text-lg text-center mb-2">Affordable Price</h1>
               <RiMoneyDollarCircleFill className="h-12 w-12 ml-4" />
@@ -89,10 +80,7 @@ const Home = () => {
               We value your Capability.
             </p>
           </div>
-          <div
-           
-            className="border-4 border-red-200 p-4 rounded-lg"
-          >
+          <div className="border-4 border-red-200 p-4 rounded-lg">
             <div className="flex flex-col-reverse items-center justify-center">
               <h1 className="text-lg text-center mb-2">
                 100% Customer Satisfaction

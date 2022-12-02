@@ -14,26 +14,24 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUser, logOut } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
-  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
 
-  if(token){
-      navigate('/');
+  if (token) {
+    navigate("/");
   }
 
   const handleSignUp = (data) => {
     setSignUPError("");
-    console.log(data);
-    const name = data.name
+    const name = data.name;
     const email = data.email;
     const password = data.password;
     const accountType = data.accountType;
-    const verified = false
+    const verified = false;
 
     const imageHostKey = process.env.REACT_APP_imgbb;
     const image = data.image[0];
-    console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
@@ -47,7 +45,6 @@ const SignUp = () => {
         createUser(email, password)
           .then((result) => {
             const user = result.user;
-            console.log(user);
             const userInfo = {
               displayName: data.name,
               photoURL: imgURL,
@@ -56,10 +53,10 @@ const SignUp = () => {
               .then(() => {
                 saveUser(name, email, imgURL, accountType, verified);
               })
-              .catch((err) => console.log(err));
+              .catch((err) => console.error(err));
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
             setSignUPError(error?.message);
           });
       });
@@ -67,8 +64,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, imgURL, role, verified) => {
     const user = { name, email, imgURL, role, verified };
-    console.log(user);
-    fetch("http://localhost:5000/users", {
+    fetch("https://mobile-deal-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,7 +76,7 @@ const SignUp = () => {
         if (data.acknowledged) {
           toast.success("Successfully Signed Up");
           reset();
-          navigate('/')
+          navigate("/");
           setCreatedUserEmail(email);
         }
       });
@@ -94,12 +90,9 @@ const SignUp = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">
-                Name
-              </span>
+              <span className="label-text">Name</span>
             </label>
             <input
-             
               type="text"
               {...register("name", {
                 required: "Name is Required",
@@ -113,12 +106,9 @@ const SignUp = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">
-                Image
-              </span>
+              <span className="label-text">Image</span>
             </label>
             <input
-             
               type="file"
               {...register("image", {
                 required: "Image is Required",
@@ -132,12 +122,9 @@ const SignUp = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">
-                Email
-              </span>
+              <span className="label-text">Email</span>
             </label>
             <input
-             
               type="email"
               {...register("email", {
                 required: "Email is required",
@@ -151,12 +138,9 @@ const SignUp = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">
-                Password
-              </span>
+              <span className="label-text">Password</span>
             </label>
             <input
-             
               type="password"
               {...register("password", {
                 required: "Password is required",
@@ -176,12 +160,9 @@ const SignUp = () => {
             <div className="">
               <label className="label">
                 {" "}
-                <span className="label-text">
-                  Select Account Type
-                </span>{" "}
+                <span className="label-text">Select Account Type</span>{" "}
               </label>
               <select
-               
                 className="select select-bordered border-red-300 w-full max-w-xs"
                 {...register("accountType", {
                   required: "Account Type is Required",
@@ -196,7 +177,6 @@ const SignUp = () => {
             )}
           </div>
           <input
-           
             className="btn btn-outline w-full mt-4"
             value="Sign Up"
             type="submit"
@@ -210,9 +190,7 @@ const SignUp = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">
-          CONTINUE WITH GOOGLE
-        </button>
+        <button className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button>
       </div>
     </div>
   );

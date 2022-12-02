@@ -2,18 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
 import logo from "../../../images/navbar-logo.png";
-import axios from 'axios';
+import axios from "axios";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     axios
-    .get(`http://localhost:5000/user?email=${user?.email}`)
-    .then(function(response){
+      .get(`https://mobile-deal-server.vercel.app/user?email=${user?.email}`)
+      .then(function (response) {
         setUserData(response.data);
-    })
-  },[user])
+      });
+  }, [user]);
   const [userData, setUserData] = useState(null);
 
   const menuItems = (
@@ -55,9 +55,6 @@ const Navbar = () => {
                     <li>
                       <Link to="/dashboard/mylistings">My Listings</Link>
                     </li>
-                    <li>
-                      <Link to="/dashboard/mybuyers">My Customers</Link>
-                    </li>
                   </>
                 )}
                 {userData?.role === "Buyer" && (
@@ -97,7 +94,6 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then((res) => {
-        console.log(res)
         localStorage.clear();
       })
       .catch((err) => console.error(err));
@@ -144,19 +140,20 @@ const Navbar = () => {
             </Link>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          {menuItems}
-        </div>
+        <div className="navbar-center hidden lg:flex">{menuItems}</div>
         <div className="navbar-end">
           {user?.uid && user?.photoURL ? (
-            <section  className="flex items-center">
-                <div className=" tooltip tooltip-left" data-tip={`${userData?.name}`}>
+            <section className="flex items-center">
+              <div
+                className=" tooltip tooltip-left"
+                data-tip={`${userData?.name}`}
+              >
                 <img
                   className="w-12 border border-gray-500 mr-3 rounded-full"
                   src={user?.photoURL}
                   alt=""
                 ></img>
-                </div>
+              </div>
               <Link onClick={handleLogOut} className="btn text-white">
                 LogOut
               </Link>

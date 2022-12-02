@@ -4,7 +4,6 @@ import SinglePhone from '../Phones/SinglePhone/SinglePhone';
 
 const AllPhones = () => {
     const phones = useLoaderData();
-    console.log(phones);
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8'>
             {

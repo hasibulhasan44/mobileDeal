@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
-import axios from 'axios';
+import axios from "axios";
 
 const ContactModal = ({ phone }) => {
   const { user } = useContext(AuthContext);
@@ -19,33 +19,30 @@ const ContactModal = ({ phone }) => {
     const buyerEmail = data.buyeremail;
     const buyerNumber = data.buyerNumber;
     const buyerLocation = data.buyerLocation;
-    console.log(buyerName, buyerEmail, buyerNumber, buyerLocation);
     const order = {
-        buyerName : buyerName,
-        buyerEmail :buyerEmail,
-        buyerNumber : buyerNumber,
-        buyerLocation: buyerLocation,
-        ...phone
-    }
+      buyerName: buyerName,
+      buyerEmail: buyerEmail,
+      buyerNumber: buyerNumber,
+      buyerLocation: buyerLocation,
+      ...phone,
+    };
 
-    fetch('http://localhost:5000/addorder',{
-      method:'POST',
-      headers:{
-        'content-type': 'application/json'
+    fetch("https://mobile-deal-server.vercel.app/addorder", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      body:JSON.stringify(order)
+      body: JSON.stringify(order),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.acknowledged){
-        toast.success('Order placed successfully')
-        reset();
-      }
-      else{
-        toast.error(data.message)
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Order placed successfully");
+          reset();
+        } else {
+          toast.error(data.message);
+        }
+      });
   };
 
   return (
@@ -53,9 +50,16 @@ const ContactModal = ({ phone }) => {
       <input type="checkbox" id="contactModal" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box relative">
-        <label htmlFor="contactModal" className="btn btn-xs btn-circle absolute right-5 top-7">✕</label>
+          <label
+            htmlFor="contactModal"
+            className="btn btn-xs btn-circle absolute right-5 top-7"
+          >
+            ✕
+          </label>
           <h3 className="font-bold text-lg">
-            Please give your contact information and take the selller information, If you need. The seller will be notified with your contact info.
+            Please give your contact information and take the selller
+            information, If you need. The seller will be notified with your
+            contact info.
           </h3>
           <div className="lg:w-96 p-8">
             <form onSubmit={handleSubmit(handleSubmitModal)}>

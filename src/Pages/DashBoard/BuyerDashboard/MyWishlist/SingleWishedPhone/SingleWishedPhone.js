@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 const SingleWishedPhone = ({ phone, setRefetch }) => {
   const handleDeletewish = (id) => {
     const proceed = window.confirm("Remove From Wishlist?");
-    console.log(id);
     if (proceed) {
       fetch(
-        `http://localhost:5000/dashboard/removefromwishlist/${id}`,
+        `https://mobile-deal-server.vercel.app/dashboard/removefromwishlist/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -19,7 +18,6 @@ const SingleWishedPhone = ({ phone, setRefetch }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             setRefetch();
             toast.success(`Phone Removed From Wishlist`);
@@ -53,7 +51,7 @@ const SingleWishedPhone = ({ phone, setRefetch }) => {
             <Link to={`/phonedetails/${phone?._id}`} className="btn w-32">
               Details
             </Link>
-            <Link onClick={()=>handleDeletewish(phone?._id)} className="btn">
+            <Link onClick={() => handleDeletewish(phone?._id)} className="btn">
               Remove From Wishlist
             </Link>
           </div>

@@ -19,7 +19,7 @@ const PhoneDetails = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/user?email=${user?.email}`)
+      fetch(`https://mobile-deal-server.vercel.app/user?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           setReporter(data);
@@ -42,7 +42,7 @@ const PhoneDetails = () => {
 
     if (proceed) {
       setLoading(true);
-      fetch("http://localhost:5000/reportphone", {
+      fetch("https://mobile-deal-server.vercel.app/reportphone", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -51,7 +51,6 @@ const PhoneDetails = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setLoading(false);
           if (data.insertedId) {
             toast.success("Successfully Reported The Phone");
@@ -71,7 +70,7 @@ const PhoneDetails = () => {
       ...phone,
     };
 
-    fetch("http://localhost:5000/addtowishlist", {
+    fetch("https://mobile-deal-server.vercel.app/addtowishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,7 +79,6 @@ const PhoneDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setLoading(false);
         if (data.insertedId) {
           toast.success("Successfully Added The Phone To Your Wishlist");

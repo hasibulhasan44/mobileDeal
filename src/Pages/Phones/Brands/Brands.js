@@ -5,7 +5,7 @@ import Category from "../../Category/Category";
 const Brands = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://mobile-deal-server.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -19,7 +19,12 @@ const Brands = () => {
             <Category key={category?._id} category={category}></Category>
           ))}
       </div>
-      <Link to="/allphones" className="btn m-4 flex w-72 mx-auto justify-center">See All</Link>
+      <Link
+        to="/allphones"
+        className="btn m-4 flex w-72 mx-auto justify-center"
+      >
+        See All
+      </Link>
     </div>
   );
 };

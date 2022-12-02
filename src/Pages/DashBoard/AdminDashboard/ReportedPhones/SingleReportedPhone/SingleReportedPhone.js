@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 const SingleReportedPhone = ({ phone, setRefetch }) => {
   const handleDeleteReportedPhone = (id) => {
     const proceed = window.confirm("Remove This Phone From Website?");
-    console.log(id);
     if (proceed) {
       fetch(
-        `http://localhost:5000/dashboard/deletereportedphone/${phone?.phoneId}`,
+        `https://mobile-deal-server.vercel.app/dashboard/deletereportedphone/${phone?.phoneId}`,
         {
           method: "DELETE",
           headers: {
@@ -19,7 +18,6 @@ const SingleReportedPhone = ({ phone, setRefetch }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             setRefetch();
             toast.success(`Phone Removed From Wishlist`);
@@ -53,7 +51,10 @@ const SingleReportedPhone = ({ phone, setRefetch }) => {
             <Link to={`/phonedetails/${phone?._id}`} className="btn w-32">
               Details
             </Link>
-            <Link onClick={()=>handleDeleteReportedPhone(phone?._id)} className="btn">
+            <Link
+              onClick={() => handleDeleteReportedPhone(phone?._id)}
+              className="btn"
+            >
               Remove From Website
             </Link>
           </div>

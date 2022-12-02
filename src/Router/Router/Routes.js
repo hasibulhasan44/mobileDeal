@@ -23,6 +23,7 @@ import MyWishlist from "../../Pages/DashBoard/BuyerDashboard/MyWishlist/MyWishli
 import SellerRoute from "../SellerRoute/SellerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import NotFound from "../../Pages/NotFound/NotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -31,89 +32,144 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path:'/signup',
-        element:<SignUp></SignUp>
+        path: "/signup",
+        element: <SignUp></SignUp>,
       },
       {
-        path: '/blogs',
-        element: <Blogs></Blogs>
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
       {
-        path:'/phones',
-        element:<Brands></Brands>
+        path: "/phones",
+        element: <Brands></Brands>,
       },
       {
-        path:'/phonedetails/:id',
-        element:<PhoneDetails></PhoneDetails>,
-        loader: async ({params}) => await fetch(`http://localhost:5000/phonedetails/${params?.id}`)
+        path: "/phonedetails/:id",
+        element: <PhoneDetails></PhoneDetails>,
+        loader: async ({ params }) =>
+          await fetch(
+            `https://mobile-deal-server.vercel.app/phonedetails/${params?.id}`
+          ),
       },
       {
-        path:'/allphones',
-        element:<AllPhones></AllPhones>,
-        loader: async() => await fetch('http://localhost:5000/allphones')
+        path: "/allphones",
+        element: <AllPhones></AllPhones>,
+        loader: async () =>
+          await fetch("https://mobile-deal-server.vercel.app/allphones"),
       },
       {
-        path:'/phones/:brandname',
+        path: "/phones/:brandname",
         element: <Phones></Phones>,
-        loader: async({params})=>await fetch(`http://localhost:5000/phones/${params.brandname}`)
+        loader: async ({ params }) =>
+          await fetch(
+            `https://mobile-deal-server.vercel.app/phones/${params.brandname}`
+          ),
+      },
+      {
+        path:'*',
+        element:<NotFound></NotFound>
       }
     ],
   },
   {
-    path:'/dashboard',
-    element:<DashboardLayout></DashboardLayout>,
-    children:[
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
       {
-        path:'/dashboard/listanitem',
-        element:<SellerRoute><ListAnItem></ListAnItem></SellerRoute>
+        path: "/dashboard/listanitem",
+        element: (
+          <SellerRoute>
+            <ListAnItem></ListAnItem>
+          </SellerRoute>
+        ),
       },
       {
-        path:'/dashboard/mylistings',
-        element:<SellerRoute><MyListings></MyListings></SellerRoute>
+        path: "/dashboard/mylistings",
+        element: (
+          <SellerRoute>
+            <MyListings></MyListings>
+          </SellerRoute>
+        ),
       },
       {
-        path: '/dashboard/edititem/:id',
-        element: <SellerRoute><EditItem></EditItem></SellerRoute>,
-        loader: async({params}) => await fetch(`http://localhost:5000/item/${params.id}`)
+        path: "/dashboard/edititem/:id",
+        element: (
+          <SellerRoute>
+            <EditItem></EditItem>
+          </SellerRoute>
+        ),
+        loader: async ({ params }) =>
+          await fetch(
+            `https://mobile-deal-server.vercel.app/item/${params.id}`
+          ),
       },
       {
-        path:'/dashboard/mybuyers',
-        element:<SellerRoute><MyCustomers></MyCustomers></SellerRoute>
+        path: "/dashboard/mybuyers",
+        element: (
+          <SellerRoute>
+            <MyCustomers></MyCustomers>
+          </SellerRoute>
+        ),
       },
       {
-        path:'/dashboard/myorders',
-        element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+        path: "/dashboard/myorders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/dashboard/mywishlist',
-        element:<PrivateRoute><MyWishlist></MyWishlist></PrivateRoute>
+        path: "/dashboard/mywishlist",
+        element: (
+          <PrivateRoute>
+            <MyWishlist></MyWishlist>
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/dashboard/alluser',
-        element:<AdminRoute><AllUser></AllUser></AdminRoute>
+        path: "/dashboard/alluser",
+        element: (
+          <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
       {
-        path:'/dashboard/allbuyer',
-        element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
+        path: "/dashboard/allbuyer",
+        element: (
+          <AdminRoute>
+            <AllBuyer></AllBuyer>
+          </AdminRoute>
+        ),
       },
       {
-        path:'/dashboard/allseller',
-        element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
+        path: "/dashboard/allseller",
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
       },
       {
-        path:'/dashboard/reportedphones',
-        element:<AdminRoute><ReportedPhones></ReportedPhones>,</AdminRoute>,
-        loader: async() => await fetch('http://localhost:5000/reportedphones')
-      }
-    ]
-  }
+        path: "/dashboard/reportedphones",
+        element: (
+          <AdminRoute>
+            <ReportedPhones></ReportedPhones>,
+          </AdminRoute>
+        ),
+        loader: async () =>
+          await fetch("https://mobile-deal-server.vercel.app/reportedphones"),
+      },
+    ],
+  },
 ]);
 
 export default routes;

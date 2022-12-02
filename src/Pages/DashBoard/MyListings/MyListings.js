@@ -12,18 +12,18 @@ const MyListings = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/user?email=${user?.email}`)
+      .get(`https://mobile-deal-server.vercel.app/user?email=${user?.email}`)
       .then(function (response) {
-        console.log(response);
         setSeller(response?.data);
       });
   }, [user, refetch]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/mylistings?email=${seller?.email}`)
+      .get(
+        `https://mobile-deal-server.vercel.app/mylistings?email=${seller?.email}`
+      )
       .then(function (response) {
-        console.log(response);
         setphones(response.data);
         setLoading(false);
       });

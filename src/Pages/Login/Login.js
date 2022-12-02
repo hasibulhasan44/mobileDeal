@@ -25,13 +25,10 @@ const Login = () => {
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         toast.success('Successfully Logged In')
         const email = user?.email;
         setLoginUserEmail(email);
-        if (token) {
-          navigate(from, { replace: true });
-        }
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error.message);

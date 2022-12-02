@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 const SingleOrderedPhone = ({ phone, setRefetch }) => {
   const handleDeleteOrder = (id) => {
     const proceed = window.confirm("Are You Sure To Cancel This Order?");
-    console.log(id);
     if (proceed) {
       fetch(
-        `http://localhost:5000/dashboard/cancelorder/${id}`,
+        `https://mobile-deal-server.vercel.app/dashboard/cancelorder/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -19,7 +18,6 @@ const SingleOrderedPhone = ({ phone, setRefetch }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             setRefetch();
             toast.success(`Order Canceled successfully`);
@@ -53,7 +51,7 @@ const SingleOrderedPhone = ({ phone, setRefetch }) => {
             <Link to={`/phonedetails/${phone?._id}`} className="btn w-32">
               Details
             </Link>
-            <Link onClick={()=>handleDeleteOrder(phone?._id)} className="btn">
+            <Link onClick={() => handleDeleteOrder(phone?._id)} className="btn">
               Cancel Order
             </Link>
           </div>

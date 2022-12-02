@@ -12,10 +12,9 @@ const ListAnItem = () => {
   const [loadedUserData, setLoadedUserData] = useState(null);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/user?email=${user?.email}`)
+      fetch(`https://mobile-deal-server.vercel.app/user?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setLoadedUserData(data);
         });
     }
@@ -41,14 +40,13 @@ const ListAnItem = () => {
     const monthsused = data.monthsused;
     const originalprice = data.originalprice;
     const resaleprice = data.resaleprice;
-    const status = "Available"
+    const status = "Available";
     const advertise = false;
     const dateraw = new Date();
     const postdate = format(dateraw, "Pp");
 
     const imageHostKey = process.env.REACT_APP_imgbb;
     const image = data.image[0];
-    console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
@@ -113,7 +111,7 @@ const ListAnItem = () => {
       sellerimg,
       sellerverified,
     };
-    fetch("http://localhost:5000/phones", {
+    fetch("https://mobile-deal-server.vercel.app/phones", {
       method: "POST",
       headers: {
         "content-type": "application/json",
