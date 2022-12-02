@@ -22,7 +22,10 @@ const HomePhone = () => {
     return <Loading></Loading>;
   }
 
-  return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
+  return (
+    <div>
+        <p className="text-xl font-semibold text-center">Here Are Some Most Viewed Products On Our Website</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
     {
         phones?.map(phone => <SinglePhone
         key={phone?._id}
@@ -30,6 +33,8 @@ const HomePhone = () => {
         ></SinglePhone>)
     }
   </div>;
+    </div>
+  )
 };
 
 export default HomePhone;
