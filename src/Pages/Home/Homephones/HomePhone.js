@@ -22,7 +22,7 @@ const HomePhone = () => {
     return <Loading></Loading>;
   }
 
-  return <div>
+  return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
     {
         phones?.map(phone => <SinglePhone
         key={phone?._id}
