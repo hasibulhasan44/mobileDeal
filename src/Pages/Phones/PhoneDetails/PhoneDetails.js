@@ -8,7 +8,7 @@ import ContactModal from "../ContactModal/ContactModal";
 import Loading from "../../Shared Components/LoadingBtn/Loading";
 import { FiHeart } from "react-icons/fi";
 import toast from "react-hot-toast";
-import {GoVerified} from 'react-icons/go';
+import { GoVerified } from "react-icons/go";
 
 const PhoneDetails = () => {
   const { user } = useContext(AuthContext);
@@ -49,12 +49,12 @@ const PhoneDetails = () => {
         },
         body: JSON.stringify(reportedphone),
       })
-        .then(res => res.json())
+        .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setLoading(false);
-          if(data.insertedId){
-            toast.success('Successfully Reported The Phone')
+          if (data.insertedId) {
+            toast.success("Successfully Reported The Phone");
           }
         })
         .catch((err) => {
@@ -65,36 +65,35 @@ const PhoneDetails = () => {
   };
 
   const handleAddToWishlist = () => {
-
     const wishedPhone = {
-        userEmail : user?.email,
-        userName : user?.displayName,
-        ...phone
-    }
+      userEmail: user?.email,
+      userName: user?.displayName,
+      ...phone,
+    };
 
     fetch("http://localhost:5000/addtowishlist", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(wishedPhone),
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishedPhone),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setLoading(false);
+        if (data.insertedId) {
+          toast.success("Successfully Added The Phone To Your Wishlist");
+        }
       })
-        .then(res => res.json())
-        .then((data) => {
-          console.log(data);
-          setLoading(false);
-          if(data.insertedId){
-            toast.success('Successfully Added The Phone To Your Wishlist')
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-  }
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  };
 
-  if(loading){
-    return <Loading></Loading>
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (
@@ -122,23 +121,35 @@ const PhoneDetails = () => {
             <p className="font-semibold">Seller :</p>
             <div className="flex flex-col gap-y-4 lg:flex-row justify-between items-center">
               <div className="flex items-center gap-3">
-              <img
-                className="w-14 rounded-full"
-                src={phone?.sellerimg}
-                alt=""
-              />
-              <p className="text-xl font-semibold">
-              <span className="flex items-center h-2">{phone?.sellername} 
-              {phone?.sellerverified && <GoVerified size={18} className="lg:ml-3"></GoVerified>
-              }</span>
-                <br />
-                <span className="text-sm">{phone?.selleremail}</span>
-              </p>
+                <img
+                  className="w-14 rounded-full"
+                  src={phone?.sellerimg}
+                  alt=""
+                />
+                <p className="text-xl font-semibold">
+                  <span className="flex items-center h-2">
+                    {phone?.sellername}
+                    {phone?.sellerverified && (
+                      <GoVerified size={18} className="lg:ml-3"></GoVerified>
+                    )}
+                  </span>
+                  <br />
+                  <span className="text-sm">{phone?.selleremail}</span>
+                </p>
               </div>
               <span className="flex gap-3 items-center">
-                <Link onClick={handleAddToWishlist} className="tooltip tooltip-left" data-tip={'Add To Wishlist'}>
-                    <FiHeart size={25}></FiHeart>
-                </Link>
+                <button
+                  disabled={!user?.uid}
+                  onClick={handleAddToWishlist}
+                  className="tooltip tooltip-left"
+                  data-tip={
+                    !user?.uid
+                      ? "please log in to add a phone to your wishlist"
+                      : "Add To Wishlist"
+                  }
+                >
+                  <FiHeart size={25}></FiHeart>
+                </button>
                 <p>{phone?.postdate}</p>
               </span>
             </div>
