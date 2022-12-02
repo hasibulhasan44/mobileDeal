@@ -154,6 +154,7 @@ const PhoneDetails = () => {
               </span>
             </div>
             <p className="my-2">Description: {phone?.devicedetails}</p>
+            <p className="my-2">{phone?.monthsused} Months Used</p>
           </div>
           <p className="text-lg">Location: {phone?.location}</p>
 
