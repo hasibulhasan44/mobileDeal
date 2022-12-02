@@ -1,0 +1,26 @@
+[
+    {
+        "brandname":"Infinix",
+        "brandimg":"https://i.ibb.co/1JVQQs3/Infinix-800x400.jpg"
+    },
+    {
+        "brandname":"Samsung",
+        "brandimg":"https://i.ibb.co/grd9YSn/samsung-logo-800.jpg"
+    },
+    {
+        "brandname":"Apple",
+        "brandimg":"https://i.ibb.co/G3mf7pR/apple.jpg"
+    },
+    {
+        "brandname":"One Plus",
+        "brandimg":"https://i.ibb.co/MMK207m/oneplus.png"
+    },
+    {
+        "brandname":"Oppo",
+        "brandimg":"https://i.ibb.co/8xkW9TL/oppo-electronics-logo-vector-11573952722eqaodexuaw.jpg"
+    },
+    {
+        "brandname":"Vivo",
+        "brandimg":"https://i.ibb.co/98mqscD/135409a2-9cc2-4cb8-a85a-f0df8771595c.jpg"
+    }
+]
