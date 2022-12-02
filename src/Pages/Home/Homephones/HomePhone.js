@@ -25,6 +25,8 @@ const HomePhone = () => {
   return <div>
     {
         phones?.map(phone => <SinglePhone
+        key={phone?._id}
+        phone={phone}
         ></SinglePhone>)
     }
   </div>;
