@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-const useAdmin = email => {
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isAdminLoading, setIsAdminLoading] = useState(true);
+const useToken = email => {
+    const [token, setToken] = useState('');
     useEffect(() => {
         if (email) {
-            setIsAdminLoading(true)
-            fetch(`http://localhost:5000/users/admin/${email}`)
+            fetch(`http://localhost:5000/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    setIsAdmin(data.isAdmin);
-                    setIsAdminLoading(false);
-                })
+                    if (data.mobileToken) {
+                        localStorage.setItem('mobileToken', data.mobileToken);
+                        setToken(data.mobileToken);
+                    }
+                });
         }
-    }, [email])
-    return [isAdmin, isAdminLoading]
+    }, [email]);
+    return [token];
 }
 
-export default useAdmin;
+export default useToken;

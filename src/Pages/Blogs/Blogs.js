@@ -11,14 +11,14 @@ const Blogs = () => {
         </h2>
         <div>
           <h2 className="text-md mb-2">The questions are:</h2>
-          <p>
+          <>
             <ul className="list-disc ml-4">
               <li>Different ways to manage state in React.</li>
               <li>How does Prototypical Inheritence work?</li>
               <li>What is Unit Test?</li>
               <li>What are the differences among React, Angular and Vue?</li>
             </ul>
-          </p>
+          </>
         </div>
       </div>
       <div className="p-2">
@@ -28,7 +28,7 @@ const Blogs = () => {
           </div>
           <div className="flex mb-4">
             <FaAngleDoubleRight className="h-6 w-12"></FaAngleDoubleRight>
-            <p className="ml-2">
+            <div className="ml-2">
               Every React component has a built-in state. This state is an
               object which stores the property values that belong to a
               component. State is able to keep data from different components
@@ -42,7 +42,7 @@ const Blogs = () => {
                 <li>React Context API</li>
                 <li>Apollo Link State</li>
               </ul>
-            </p>
+            </div>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ const Blogs = () => {
                 component (JSX). React offers a type of mobile solution for
                 applications called React-Native.
               </p>
-              <p>
+              <div>
                 <span className="block mb-2 text-lg">
                   Pros and Cons of React
                 </span>
@@ -137,11 +137,11 @@ const Blogs = () => {
                     interactive.
                   </li>
                 </ul>
-              </p>
+              </div>
             </div>
 
             <div className="mb-4">
-              <p>
+              <div>
                 <span className="block mb-2 text-lg bg-green-600 w-40 rounded-lg">2. What is Vue?</span>
                 Vue.js is a JavaScript-based progressive framework for creating
                 single-page applications. It was created with scalability and
@@ -157,8 +157,8 @@ const Blogs = () => {
                 frameworks and presents them in a minimalistic modern style. Web
                 developers use Vue.js to create frontend user interfaces for
                 web-based and hybrid mobile applications.
-              </p>
-              <p>
+              </div>
+              <div>
                 <span className="block mb-2 mt-4 text-lg">
                   Pros and Cons of Vue.js
                 </span>
@@ -187,7 +187,7 @@ const Blogs = () => {
                   </li>
                   <li>Overcomplications with flexibility</li>
                 </ul>
-              </p>
+              </div>
             </div>
 
             <div className="mb-4">
@@ -202,7 +202,7 @@ const Blogs = () => {
                 massively impacts the loading time. Angular.js has its Ionic
                 framework for mobile applications.
               </p>
-              <p>
+              <div>
                 <span className="block mb-2 mt-4 text-lg">
                   Pros and Cons of Angular
                 </span>
@@ -231,7 +231,7 @@ const Blogs = () => {
                   <li>If a user has deactivated JavaScript in the browser, using a JavaScript-based SPA is not possible.</li>
                   <li>Furthermore, it does not always support outdated or unfamiliar browsers.</li>
                 </ul>
-              </p>
+              </div>
             </div>
           </div>
         </div>
