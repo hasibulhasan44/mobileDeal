@@ -22,6 +22,7 @@ import ReportedPhones from "../Pages/DashBoard/AdminDashboard/ReportedPhones/Rep
 import MyOrders from "../Pages/DashBoard/BuyerDashboard/MyOrders/MyOrders";
 import MyWishlist from "../Pages/DashBoard/BuyerDashboard/MyWishlist/MyWishlist";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -79,20 +80,20 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/dashboard/edititem/:id',
-        element: <EditItem></EditItem>,
+        element: <SellerRoute><EditItem></EditItem></SellerRoute>,
         loader: async({params}) => await fetch(`http://localhost:5000/item/${params.id}`)
       },
       {
         path:'/dashboard/mybuyers',
-        element:<MyCustomers></MyCustomers>
+        element:<SellerRoute><MyCustomers></MyCustomers></SellerRoute>
       },
       {
         path:'/dashboard/myorders',
-        element:<MyOrders></MyOrders>
+        element:<PrivateRoute><MyOrders></MyOrders></PrivateRoute>
       },
       {
         path:'/dashboard/mywishlist',
-        element:<MyWishlist></MyWishlist>
+        element:<PrivateRoute><MyWishlist></MyWishlist></PrivateRoute>
       },
       {
         path:'/dashboard/alluser',
