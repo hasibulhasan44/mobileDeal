@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SinglePhone from "../../Phones/Phones/SinglePhone/SinglePhone";
 import Loading from "../../Shared Components/LoadingBtn/Loading";
 
 const HomePhone = () => {
@@ -22,7 +23,10 @@ const HomePhone = () => {
   }
 
   return <div>
-    {}
+    {
+        phones?.map(phone => <SinglePhone
+        ></SinglePhone>)
+    }
   </div>;
 };
 
